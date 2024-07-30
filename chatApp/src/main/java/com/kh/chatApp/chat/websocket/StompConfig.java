@@ -25,15 +25,18 @@ public class StompConfig implements WebSocketMessageBrokerConfigurer {
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
 		
 		registry
-		.addEndpoint("/stompServer")
-		.setAllowedOriginPatterns("*")
-		.withSockJS();
+		.addEndpoint("/stompServer") // 엔드포인트 추가 
+		.setAllowedOriginPatterns("http://localhost:3000") // 허용 오리진 추가
+		.withSockJS(); // 이 웹 소캣은 SockJs로 만들어졌다. 
 	}
-
+	
+	// 메세지 브로커 설정 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry registry) {
-		// TODO Auto-generated method stub
-		WebSocketMessageBrokerConfigurer.super.configureMessageBroker(registry);
+		
+		// 브로커 활성화 
+		// '/chat'들어오는 메세지를 중계
+		registry.enableSimpleBroker("/chat");
 	}
 	
 	
