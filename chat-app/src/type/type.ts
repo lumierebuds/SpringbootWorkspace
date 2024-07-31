@@ -1,9 +1,9 @@
-
-
 export type Member = {
     userNo: number,
     nickName: string, 
-    profile : string
+    profile: string,
+    userStatus? : number
+    
 }
 
 export const initMember: Member = {
@@ -17,4 +17,13 @@ export type ChatRoom = {
     title: string,
     nickName: string,
     cnt: number
+}
+
+export type ChatMessage = {
+    message: string,
+    createDate: string,
+    userNo: number, 
+    nickName: string, 
+    profile : string 
+
 }

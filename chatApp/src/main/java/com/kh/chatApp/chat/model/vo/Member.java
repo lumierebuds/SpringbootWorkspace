@@ -17,4 +17,6 @@ public class Member {
 	private String modifyDate;
 	private String status; 
 	private String profile;
+	
+	private int userStatus;
 }

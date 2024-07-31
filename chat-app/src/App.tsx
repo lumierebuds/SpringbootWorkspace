@@ -30,8 +30,8 @@ function App() {
 
   const selectUser = () => {
     if (userNo == 0) return;
-    let user = userList.find(u =>  u.userNo == userNo ) as Member; // 사용자 목록에서 체크박스로 선택한 사용자 선택  
-    dispatch(setUser(user)); // 선택했던 사용자로 채팅할 수 있게 상태 변경
+    let user = userList.find(u =>  u.userNo == userNo ) as Member; // 사용자 목록에서 체크박스로 선택한 사용자를 번호로 선택  
+    dispatch(setUser(user)); // 선택했던 사용자로 채팅할 수 있게 전역 상태 변경
   }
 
   return (
@@ -66,23 +66,23 @@ function App() {
           </>
         ) : (
           <>
-          <div className="header">
-            <div className='header-2'>
-            <div className='user-info'>
-              <img src={user.profile}/>
-              <span className='user-nickname'>{user.nickName}</span>                
+            <div className="header">
+              <div className='header-2'>
+              <div className='user-info'>
+                <img src={user.profile}/>
+                <span className='user-nickname'>{user.nickName}</span>                
+              </div>
+              <button className='logout-btn' onClick={() => {
+                dispatch(logOut());
+                navi("/");
+              }}>로그아웃</button>
+              </div>
             </div>
-            <button className='logout-btn' onClick={() => {
-              dispatch(logOut());
-              navi("/");
-            }}>로그아웃</button>
-            </div>
-          </div>
-          <Routes>
-            <Route path='/' element={<ChattingRoomList/>} />
-            <Route path='/list' element={<ChattingRoomList/>} />
-            <Route path='/detail/:chatRoomNo' element={<ChattingRoom/>}/>
-          </Routes>
+            <Routes>
+              <Route path='/' element={<ChattingRoomList/>} />
+              <Route path='/list' element={<ChattingRoomList/>} />
+              <Route path='/detail/:chatRoomNo' element={<ChattingRoom/>}/>
+            </Routes>
           </>
           ) 
       }
