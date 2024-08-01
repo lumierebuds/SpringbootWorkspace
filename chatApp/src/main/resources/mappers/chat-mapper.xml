@@ -17,9 +17,7 @@
 	</select>
 	
 	<insert id="openChatRoom" useGeneratedKeys="true">
-		<selectKey keyProperty="chatRoomNo" resultType="int" order="AFTER">
-			SELECT SEQ_CRM_NO.CURRVAL FROM DUAL
-		</selectKey>
+
 	
 		INSERT INTO CHAT_ROOM
 		VALUES(
@@ -28,6 +26,10 @@
 			DEFAULT,
 			#{userNo}
 		)
+		
+		<selectKey keyProperty="chatRoomNo" resultType="int" order="AFTER">
+			SELECT SEQ_CRM_NO.CURRVAL FROM DUAL
+		</selectKey>
 	</insert>
 	
 	<insert id="insertChatMessage" useGeneratedKeys="true">
@@ -40,7 +42,7 @@
 			#{userNo}
 		)
 		
-		<selectKey keyProperty="chatRoomNo" resultType="int" order="AFTER">
+		<selectKey keyProperty="cmNo" resultType="int" order="AFTER">
 			SELECT SEQ_CM_NO.CURRVAL FROM DUAL
 		</selectKey>
 	</insert>
@@ -69,7 +71,7 @@
 	<select id="selectMessages" resultType="chatMessage">
 		SELECT 
 			MESSAGE,
-			TO_CHAR(CREATE_DATE, 'YYYY-MM-DD'),
+			TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') CREATE_DATE,
 			USER_NO, 
 			NICK_NAME,
 			PROFILE
@@ -81,7 +83,7 @@
 	<select id="selectChatMessage" resultType="chatMessage">
 		SELECT 
 			MESSAGE,
-			TO_CHAR(CREATE_DATE, 'YYYY-MM-DD'),
+			TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') CREATE_DATE,
 			USER_NO, 
 			NICK_NAME,
 			PROFILE

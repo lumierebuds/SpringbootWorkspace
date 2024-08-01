@@ -33,10 +33,8 @@ public class ChatStompController {
 		
 		// 1) DB에 채팅메시지 등록
 		// 2) 같은방 사용자에게 채팅내용 전달 
-		 chatMessage =  service.insertChatMessage(chatMessage);
-		return chatMessage;
-		
-		
+		chatMessage =  service.insertChatMessage(chatMessage);
+		return chatMessage;	
 	}
 	
 	

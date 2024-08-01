@@ -18,7 +18,7 @@ public interface ChatDao {
 
 	int openChatRoom(ChatRoom cr);
 
-	int insertChatMessage(ChatMessage chatMessage);
+	void insertChatMessage(ChatMessage chatMessage);
 	
 	ChatMessage selectChatMessage(int cmNo);
 

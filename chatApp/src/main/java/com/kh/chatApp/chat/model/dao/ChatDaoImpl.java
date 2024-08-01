@@ -36,9 +36,9 @@ public class ChatDaoImpl implements ChatDao {
 	}
 
 	@Override
-	public int insertChatMessage(ChatMessage chatMessage) {
+	public void insertChatMessage(ChatMessage chatMessage) {
 		
-		return session.insert("chat.insertChatMessage", chatMessage);
+		session.insert("chat.insertChatMessage", chatMessage);
 		
 	}
 	
