@@ -46,11 +46,12 @@ export default function ChattingRoom(){
       
       const stompClient = new Client({
         webSocketFactory : createWebSocket ,
-        reconnectDelay : 10000,
+        reconnectDelay: 10000,
         onConnect : (frame) => {
             console.log(frame);
             // 구독 1. 현재 채팅방에 메세지가 발행되는 경우
-            stompClient.subscribe(`/chat/chatRoomNo/${chatRoomNo}/message`, (frame) => {
+            stompClient.subscribe(`/chat/chatRoomNo/${chatRoomNo}/message` , (frame) => {
+                console.log("구독1");
                 const message = JSON.parse(frame.body);
                 console.log(frame.body);
                 // 의존성배열이 비어있는 useEffect함수 내부에서,
@@ -112,11 +113,12 @@ export default function ChattingRoom(){
                     userStatus : 1
                 })
             })
+
         },
       });
       stompClient.activate();
-      setWebSocket(stompClient);
-
+       setWebSocket(stompClient);
+        
       // 채팅방 메세지 가져오기
       axios.get(`${url}/chatMessage/chatRoomNo/${chatRoomNo}`)
         .then((res) => {
@@ -185,7 +187,7 @@ export default function ChattingRoom(){
 
     const exitChatRoom = () => {
         webSocket?.publish({
-            destination : `/chat/chatRoomJoin/${chatRoomNo}/${user.userNo}/delete` ,
+            destination : `/chat/chatRoomJoin/${chatRoomNo}/${user.userNo}/delete ` ,
             body : JSON.stringify(user)
         });
         setTimeout(()=>{
@@ -209,7 +211,7 @@ export default function ChattingRoom(){
                     <button className="btn btn-outline-danger" onClick={exitChatRoom}>나가기</button>
                 </div>
 
-                {/* 채팅내용 */}
+                {/* 채팅내용 */} 
                 <ul className="display-chatting">
                     <Messages chatMessages={chatMessage} />
                     <li ref={bottomRef}></li>

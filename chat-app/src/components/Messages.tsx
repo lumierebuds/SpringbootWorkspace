@@ -14,10 +14,10 @@ export default function Messages({chatMessages} : {chatMessages: ChatMessage[]})
         <>
             
             {
-                chatMessages.map((chat) => {
+                chatMessages.map((chat, index) => {
                     return (
                         chat.userNo ==  userNo? 
-                        <MyChat chat={chat}/> : <OtherChat chat={chat} />
+                        <MyChat key={index} chat={chat}/> : <OtherChat key={index} chat={chat} />
                     )
                 })
             }

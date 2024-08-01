@@ -22,7 +22,7 @@ public class ChatStompController {
 	private final ChatService service; 
 	
 	@MessageMapping("/sendMessage/chatRoomNo/{chatRoomNo}") 
-	@SendTo("/chat/chatRoomNo/{chatRoomNo}/message") // 구독하고 있는 사용자에게 반환하는 경로 
+	@SendTo("/chat/chatRoomNo/{chatRoomNo}/message") // 구독하고 있는 사용자에게 반환하는 경로
 	public ChatMessage insertChatMessage(
 			@DestinationVariable int chatRoomNo, // @PathVariable대신에 쓰이는것 
 			ChatMessage chatMessage // 채팅 메시지 객체
@@ -33,8 +33,8 @@ public class ChatStompController {
 		
 		// 1) DB에 채팅메시지 등록
 		// 2) 같은방 사용자에게 채팅내용 전달 
-		
-		return service.insertChatMessage(chatMessage);
+		 chatMessage =  service.insertChatMessage(chatMessage);
+		return chatMessage;
 		
 		
 	}
